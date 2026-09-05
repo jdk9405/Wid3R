@@ -1,0 +1,32 @@
+
+Smerf:
+  cfg:
+    _target_: evaluation.datasets.smerf_eval.SmerfEval
+    img_dir: /fs/gamma-projects/ARL3D/zipnerf_data/fisheye/{}/images_4
+    colmap_file: /fs/gamma-projects/ARL3D/zipnerf_data/fisheye/{}/sparse/0/images.bin
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/smerf_relpose_seq-id-map_minimal.json
+  camera:
+    type: Fisheye624
+
+Stanford2D3D:
+  cfg:
+    _target_: evaluation.datasets.stanford2d3d_eval.Stanford2D3DEval
+    img_dir: /fs/gamma-projects/ARL3D/dongki/data/stanford2d3d/{}/pano/rgb/
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/stfd_relpose_seq-id-map.json
+  camera:
+    type: Spherical
+
+FIORD:
+  cfg:
+    _target_: evaluation.datasets.fiord_eval.FIORDEval
+    img_dir: /fs/nexus-projects/activation_store/data/FIORD/{}/images_180/
+    colmap_file: /fs/nexus-projects/activation_store/data/FIORD/{}/colmap/model/images.bin
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/fiord_relpose_seq-id-map.json
+  camera:
+    type: Fisheye624

@@ -1,0 +1,45 @@
+MP3D:
+  type: video
+  root_path: /fs/gamma-projects/ARL3D/dongki/data/mp3d_dk/
+  ls_all_seqs:
+    - 2t7WUuJeko7
+    - 5ZKStnWn8Zo
+    - ARNzJeq3xxb
+    - fzynW3qQPVF
+    - jtcxE69GiFV
+    - pa4otMbVnkk
+    - q9vSo1VnCiC
+    - rqfALeAoiTq
+    - UwV83HsGsw3
+    - wc2JMjhGNzB
+    - WYY7iVyf5p8
+    - YFuZgdQ5vWj
+    - yqstnuAEVhm
+    - YVUC4YcDtcY
+    - gxdoqLR6rwA
+    - gYvKGZ5eRqb
+    - RPmz2sHmrrY
+    - Vt2qJdWjCF2
+  img:
+    path: ${data.MP3D.root_path}/{seq}/dk_erp_images/
+    ext: png
+  depth:
+    path: ${data.MP3D.root_path}/{seq}/dk_erp_depth_images/
+    ext: png
+  camera:
+    type: Spherical
+
+STFD:
+  type: video
+  root_path: /fs/gamma-projects/ARL3D/dongki/data/stanford2d3d/
+  ls_all_seqs:
+    - area_5a
+    - area_5b
+  img:
+    path: ${data.STFD.root_path}/{seq}/pano/rgb/
+    ext: png
+  depth:
+    path: ${data.STFD.root_path}/{seq}/pano/depth/
+    ext: png
+  camera:
+    type: Spherical

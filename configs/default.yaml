@@ -1,0 +1,6 @@
+defaults:
+  - general: default
+  - data: example
+  - model: wid3r
+  - train: train_wid3r
+  - _self_

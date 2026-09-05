@@ -1,0 +1,19 @@
+MP3D:
+  cfg:
+    _target_: evaluation.datasets.mp3d_eval.MP3DEval
+    root_dir: /fs/gamma-projects/ARL3D/dongki/data/mp3d_dk
+    img_dir: ${.root_dir}/{}/dk_erp_images
+  sampling:
+    strategy: null
+  ls_all_seqs:
+    - 2t7WUuJeko7
+    - 8194nk5LbLH
+    - pLe4wQe7qrG
+  img:
+    path: ${data.MP3D.cfg.root_dir}/{seq}/dk_erp_images/
+    ext: png
+  depth:
+    path: ${data.MP3D.cfg.root_dir}/{seq}/dk_erp_depth_images/
+    ext: png
+  camera:
+    type: Spherical

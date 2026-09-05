@@ -1,0 +1,87 @@
+# @package _global_
+
+model:
+    _target_: wid3r.models.wid3r_training.Wid3R
+    pos_type: rope100
+    decoder_size: large
+    load_vggt: false
+    freeze_encoder: false
+    use_global_points: false
+    train_conf: false
+    num_dec_blk_not_to_checkpoint: 4
+    ckpt: null # <path-to-your-pretrain-checkpoint>
+    use_camera_gt: false
+
+loss:
+    train_loss: 
+        _target_: wid3r.models.loss.Wid3RLoss
+        train_conf: false
+
+    test_loss:
+        _target_: wid3r.models.loss.Wid3RLoss
+        train_conf: false
+
+train:
+    num_workers: 1 # num_workers: 8
+    batch_size: 1              # not use, dynamic batch size
+    num_epoch: 80
+    iters_per_epoch: 800
+
+    print_freq: 10
+    base_seed: 657
+
+    model_dtype: bf16
+    # dynamic complie
+    dynamo_backend: NO  # CUDAGRAPHS  # INDUCTOR  # NO
+    dynamic_compile: true
+
+    # Training config
+    gradient_accumulation_steps: 1
+    clip_grad: 1.0
+    clip_loss: 10
+    
+    seed: 42
+    resume: null
+    auto_resume: true
+    start_epoch: 0
+    global_step: 0
+    world_size: 1
+    rank: -1
+    gpu: -1
+    dist_on_itp: false
+    find_unused_parameters: false
+
+    # for distributed training
+    distributed: false
+    dist_url: env://
+    dist_backend: "nccl"
+
+    # Optimizer config
+    optimizer:
+        type: AdamW
+        weight_decay: 0.01
+        betas: [0.9, 0.999]
+        verbose: true
+        filter_bias_and_bn: true
+
+        lr: 5e-5
+        encoder_lr: 5e-6
+        anycam_header_lr: 5e-5
+
+
+    lr_scheduler:
+        type: OneCycleLR
+        max_lr: ${train.optimizer.lr}
+        anneal_strategy: cos
+        total_steps: -1
+
+        # new trial
+        pct_start: 0.1
+        div_factor: 100
+        final_div_factor: 100
+
+test:
+    num_workers: 1
+    batch_size: 1              # not use, dynamic batch size
+    print_freq: 1
+    iters_per_test: 10

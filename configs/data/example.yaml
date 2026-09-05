@@ -1,0 +1,177 @@
+# @package _global_
+
+train_dataset:
+    length: 10000000         # dummy
+
+    weights: 
+        TartanAirV2: 1600
+        ASE: 1600
+        Hypersim: 1600
+        KITTI360: 1600
+        Loc360: 1600
+        MP3D: 1600
+        ScanNetpp: 1600
+        EDEN: 1600
+        vKITTI: 1600
+
+    augs_dk: &augs_dk
+        horizontal_flip: 0.5
+        random_rotation: 2.5
+        random_scale: 0.2
+        random_translation: 0.05
+        random_brightness: 0.1
+        random_contrast: 0.1
+        random_saturation: 0.1
+        random_gamma: 0.2
+        random_hue: 0.1
+        random_sharpness: 0.1
+        random_posterize: 4
+        random_solarize: 0.2
+        scale_p: 1
+        translation_p: 0
+        brightness_p: 1
+        contrast_p: 1
+        saturation_p: 1
+        gamma_p: 1
+        hue_p: 1
+        sharpness_p: 0
+        posterize_p: 0
+        solarize_p: 0
+        equalize_p: 0
+        autocontrast_p: 0 
+
+    TartanAirV2:
+        _target_: datasets.tartanair_dataset.TartanAirV2
+        data_root: /fs/gamma-projects/FFD3D/dongki/data/tartanair-v2/
+        z_far: 80
+        frame_num: 8
+        augs_dk: *augs_dk
+        mode: 'train'
+
+    ASE:
+      _target_: datasets.ase_dataset.ASE
+      data_root: /fs/nexus-projects/ANYCAM/ase
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    Hypersim:
+      _target_: datasets.hypersim_dataset.Hypersim
+      data_root: /fs/nexus-projects/ANYCAM/hypersim/
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    KITTI360:
+      _target_: datasets.kitti360_dataset.KITTI360
+      data_root: /fs/gamma-projects/ANYCAM2/data/kitti360
+      z_far: 80
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    Loc360:
+      _target_: datasets.loc360_dataset.Loc360
+      data_root: /fs/gamma-projects/ARL3D/dongki/data/Loc360/
+      z_far: 50
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    MP3D:
+      _target_: datasets.mp3d_dataset.Matterport3D
+      data_root: /fs/gamma-projects/ARL3D/dongki/data/mp3d_dk/
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    ScanNetpp:
+      _target_: datasets.scannetpp_dataset.ScanNetpp
+      data_root: /fs/nexus-projects/ANYCAM/scannetpp/
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    EDEN:
+      _target_: datasets.eden_dataset.EDEN
+      data_root: /fs/gamma-projects/ARL3D/EDEN/
+      z_far: 100
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    vKITTI:
+      _target_: datasets.vkitti_dataset.vKITTI
+      data_root: /fs/gamma-projects/ANYCAM2/data/vkitti/
+      z_far: 80
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+    MatrixCity:
+      _target_: datasets.matrixcity_dataset.MatrixCity
+      data_root: /fs/nexus-projects/activation_store/data/MatrixCity_extracted
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'train'
+
+
+train_dataloader:
+    drop_last: True
+    shuffle: True
+
+test_dataset:
+    weights: 
+        STFD: 2000
+        MP3D: 2000
+        ScanNetpp: 2000
+
+    augs_dk:
+      cojitter: False
+      cojitter_ratio: 0.5
+      scales: null
+      aspects: [1.0, 1.0]
+      color_jitter: null
+      gray_scale: False
+      gau_blur: False
+
+
+    STFD:
+        data_root: /fs/gamma-projects/ARL3D/dongki/data/stanford2d3d/
+        _target_: datasets.stanford2d3d_dataset.Stanford2D3D
+        z_far: 20
+        frame_num: 8
+        mode: 'test'
+
+    AiMotive:
+      _target_: datasets.aimotive_dataset.AiMotive
+      data_root: /fs/gamma-projects/ARL3D/aiMotive_extracted
+      z_far: 80
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'test'
+
+    MP3D:
+      _target_: datasets.mp3d_dataset.Matterport3D
+      data_root: /fs/gamma-projects/ARL3D/dongki/data/mp3d_dk/
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'test'
+
+    ScanNetpp:
+      _target_: datasets.scannetpp_dataset.ScanNetpp
+      data_root: /fs/nexus-projects/ANYCAM/scannetpp/
+      z_far: 20
+      frame_num: 8
+      augs_dk: *augs_dk
+      mode: 'test'
+
+
+test_dataloader:
+    drop_last: True
+    shuffle: True

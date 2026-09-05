@@ -1,0 +1,21 @@
+# @package _global_
+
+trainer: trainers.wid3r_trainer.Wid3RTrainer
+
+train:
+  image_num_range: [2, 24]
+  max_img_per_gpu: 24
+  # image_num_range: [2, 12]
+  # max_img_per_gpu: 12
+
+  resolution: 
+    - [518, 336]
+
+  optimizer:
+    lr: 5e-5
+    encoder_lr: 5e-6
+    anycam_header_lr: 5e-5
+
+
+model:
+  ckpt: null # <path-to-your-pretrain-checkpoint>

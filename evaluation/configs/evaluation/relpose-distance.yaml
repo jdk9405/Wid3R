@@ -1,0 +1,27 @@
+# @package _global_
+
+defaults:
+  - override /data: relpose-distance
+
+name: relpose-distance
+
+wid3r:
+  pretrained_model_name_or_path: pretrained_weights/wid3r.bin
+
+eval_datasets:
+  - Smerf
+  - Stanford2D3D
+  - FIORD
+
+no_crop: False
+width: 518
+height: 336
+pose_eval_stride: 1
+
+device: cuda
+
+verbose: False
+
+seed: 42
+
+save_suffix: null

@@ -1,0 +1,24 @@
+# @package _global_
+
+defaults:
+  - override /data: depth
+
+name: monodepth
+
+wid3r:
+  pretrained_model_name_or_path: pretrained_weights/wid3r.bin
+
+eval_datasets:
+  - MP3D
+
+invariant: median-scale   # using median(gt) / median(pred) as scale factor
+
+overwrite: False
+no_crop: true
+width: 518
+height: 336
+
+device: cuda
+
+verbose: False
+save_suffix: null

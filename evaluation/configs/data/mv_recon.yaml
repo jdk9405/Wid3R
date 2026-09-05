@@ -1,0 +1,33 @@
+ScanNetpp:
+  cfg:
+    _target_: evaluation.datasets.scannetpp_eval.ScanNetppEval
+    root_dir: /fs/nexus-projects/ANYCAM/scannetpp
+    img_dir: ${.root_dir}/data/{}/dslr/resized_images
+    transform_file: ${.root_dir}/data/{}/dslr/nerfstudio/transforms.json
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/scannetpp_mv-recon_seq-id-map.json
+  camera:
+    type: Fisheye624
+
+MP3D:
+  cfg:
+    _target_: evaluation.datasets.mp3d_eval.MP3DEval
+    root_dir: /fs/gamma-projects/ARL3D/dongki/data/mp3d_dk
+    img_dir: ${.root_dir}/{}/dk_erp_images
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/mp3d_mv-recon_seq-id-map.json
+  camera:
+    type: Spherical
+
+Stanford2D3D:
+  cfg:
+    _target_: evaluation.datasets.stanford2d3d_eval.Stanford2D3DEval
+    root_dir: /fs/gamma-projects/ARL3D/dongki/data/stanford2d3d
+    img_dir: ${.root_dir}/{}/pano/rgb/
+  sampling:
+    strategy: null
+  seq_id_map: evaluation/datasets/seq-id-maps/stfd_relpose_seq-id-map.json
+  camera:
+    type: Spherical
